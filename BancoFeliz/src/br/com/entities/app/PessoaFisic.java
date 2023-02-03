@@ -53,7 +53,7 @@ public class PessoaFisic {
 
 	@Override
 	public String toString() {
-		return "PessoaFisic [agencia=" + agencia + ", conta=" + conta + ", cpf=" + cpf + "]";
+		return "PessoaFisic [agencia = " + agencia + ", conta = " + conta + "] Cliente " + cliente;
 	}
 	
 	

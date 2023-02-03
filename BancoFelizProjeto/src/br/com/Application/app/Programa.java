@@ -4,30 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import br.com.entities.app.PessoaFisic;
 import br.com.entities.app.Cliente;
-import br.com.entities.app.PessoaFisica;
 
 public class Programa {
 
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		PessoaFisica pessoaFisica = new PessoaFisica();
 		Cliente cliente = new Cliente();
-		List<Cliente> list = new ArrayList<Cliente>();
+		PessoaFisic pessoaFisica = new PessoaFisic();
+		List<PessoaFisic> list = new ArrayList<PessoaFisic>();
 		boolean continuar = true;
 		char opcao = 's';
 		while (continuar) {
 
 			for (int i = 1; opcao == 's'; i++) {
 				System.out.println("Bem vindo ao Banco Feliz :)");
-
-				System.out.println("possui conta corrente? sim/nao");
-
-				char search = sc.next().charAt(0);
-				if (search != 's') {
-
-					System.out.println("Digite o numero da sua agencia/ 1 : Praia Grande , 2 : Santos, 3 : Sao Paulo");
+				
+                System.out.println("Digite o numero da sua agencia/ 1 : Praia Grande , 2 : Santos, 3 : Sao Paulo");
 					int number = sc.nextInt();
 
 					String cidade = "";
@@ -66,18 +61,25 @@ public class Programa {
 
 					int conta = 1000 + i;
 
-					pessoaFisica.dadosPessoa(cpf, nome, sobrenome, rua, numero, opcao, telefone, cidade);
+					cliente.dadosPessoa(cpf, nome, sobrenome, rua, numero, opcao, telefone, cidade);
 
-					cliente = new Cliente(number, conta, pessoaFisica);
+					PessoaFisic pessoaFisic = new PessoaFisic(number, conta, cpf, cliente);
 
-					list.add(cliente);
+					list.add(pessoaFisic);
 
-					System.out.println(pessoaFisica);
+					System.out.println(cliente);
 
 					System.out.println("Agencia : " + number + " Conta : " + conta);
 					System.out.println(
 							"===========================================================================================================");
-
+					System.out.println("Gostaria de acessar sua conta?");
+					char search = sc.next().charAt(0);
+					if(search == 's') {
+						System.out.println("Digite o numero da conta");
+						int id_match = sc.nextInt();
+						pessoaFisic = list.stream().filter(x -> x.getConta() == id_match).findFirst().orElse(null);
+						System.out.println(pessoaFisic);
+					}
 					System.out.println("Gostaria de cadastrar outra conta? sim/nao");
 
 					opcao = sc.next().charAt(0);
@@ -87,15 +89,9 @@ public class Programa {
 						System.out.println("Muito obrigado por usar nossos serviços");
 
 					}
-				} else {
-					System.out.println("Digite o numero da conta");
-					int id_match = sc.nextInt();
-					cliente = list.stream().filter(x -> x.getConta() == id_match).findFirst().orElse(null);
-					System.out.println(cliente.getPessoa());
+				} 
 
-				}
+				
 			}
-
-		}
 	}
 }

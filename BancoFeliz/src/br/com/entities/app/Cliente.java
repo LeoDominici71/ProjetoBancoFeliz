@@ -1,60 +1,27 @@
 package br.com.entities.app;
 
+import java.util.Collection;
+
 import br.com.services.app.Pessoa;
 
-public class Cliente {
-	
-	private int agencia;
-	private int conta;
-	private Pessoa pessoa;
-	
-	
-	
-	public Cliente() {
-		super();
-	}
+public class Cliente implements Pessoa {
 
-	public Cliente(int agencia, int conta, Pessoa pessoa) {
-		super();
-		this.agencia = agencia;
-		this.conta = conta;
-		this.pessoa = pessoa;
-	}
+	private int cpf;
+	private int nome;
+	private int sobrenome;
 
-	public int getAgencia() {
-		return agencia;
-	}
+	@Override
+	public void dadosPessoa(int cpf, String nome, String sobrenome, String rua, int numero, int complemento,
+			int telefone, String cidade) {
 
-	public void setAgencia(int agencia) {
-		this.agencia = agencia;
+		System.out.println("Cliente [cpf = " + cpf + ", nome = " + nome + ", sobrenome = " + sobrenome + ", rua = "
+				+ rua + ", numero = " + numero + ", complemento = " + complemento + ", telefone=" + telefone
+				+ ", cidade=" + cidade + "]");
 	}
-
-	public int getConta() {
-		return conta;
-	}
-
-	public void setConta(int conta) {
-		this.conta = conta;
-	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-	
-	
 
 	@Override
 	public String toString() {
-		return "Cliente [agencia=" + agencia + ", conta=" + conta + ", pessoa=" + pessoa + "]";
+		return "Conta cadastrada com sucesso";
 	}
-	
-	
-	
-	
-	
 
 }

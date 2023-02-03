@@ -92,7 +92,7 @@ public class Programa {
 
 					System.out.println(
 							"===========================================================================================================");
-					System.out.println("Gostaria de acessar sua conta?");
+					System.out.println("Gostaria de acessar sua conta? sim/nao");
 					char acesso = sc.next().charAt(0);
 					if (acesso == 's') {
 
@@ -128,7 +128,7 @@ public class Programa {
 
 		} catch (StringException e) {
 
-			System.out.println("Por favor digite somente letras");
+			System.out.println("Por favor, digite somente letras");
 
 		} catch (CpfLenghtException e) {
 

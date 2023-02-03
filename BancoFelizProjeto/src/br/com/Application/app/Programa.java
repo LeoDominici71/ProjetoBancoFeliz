@@ -62,7 +62,7 @@ public class Programa {
 
 					System.out.println("Digite seu cpf");
 					String cpf = sc.next();
-					PessoaFisic cpf_match = list.stream().filter(x -> x.getCpf().equals(cpf)).findFirst().orElse(null);
+					PessoaFisic cpf_match = list.stream().filter(x -> x.getCliente().getCpf().equals(cpf)).findFirst().orElse(null);
 					pessoaFisica.MesmoCpf(cpf_match);
 					pessoaFisica.CpfTamanho(cpf);
 

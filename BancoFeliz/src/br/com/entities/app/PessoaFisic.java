@@ -9,7 +9,6 @@ public class PessoaFisic {
 
 	private int agencia;
 	private int conta;
-	private String cpf;
 	private PessoaFisic match;
 	private Cliente cliente;
 
@@ -19,7 +18,6 @@ public class PessoaFisic {
 	public PessoaFisic(int agencia, int conta, String cpf, Cliente cliente) {
 		this.agencia = agencia;
 		this.conta = conta;
-		this.cpf = cpf;
 		this.cliente = cliente;
 	}
 
@@ -37,14 +35,6 @@ public class PessoaFisic {
 
 	public void setConta(int conta) {
 		this.conta = conta;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public Cliente getCliente() {

@@ -1,20 +1,22 @@
 package br.com.entities.app;
 
-import br.com.exception.app.CPFExceptions;
+import br.com.exception.app.ConfirmaContaException;
+import br.com.exception.app.CpfException;
+import br.com.exception.app.CpfLenghtException;
 import br.com.exception.app.StringException;
 
 public class PessoaFisic {
 
 	private int agencia;
 	private int conta;
-	private int cpf;
-	private PessoaFisic cpf_match;
+	private String cpf;
+	private PessoaFisic match;
 	private Cliente cliente;
 
 	public PessoaFisic() {
 	}
 
-	public PessoaFisic(int agencia, int conta, int cpf, Cliente cliente) {
+	public PessoaFisic(int agencia, int conta, String cpf, Cliente cliente) {
 		this.agencia = agencia;
 		this.conta = conta;
 		this.cpf = cpf;
@@ -37,11 +39,11 @@ public class PessoaFisic {
 		this.conta = conta;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -53,12 +55,12 @@ public class PessoaFisic {
 		this.cliente = cliente;
 	}
 
-	public PessoaFisic getCpf_match() {
-		return cpf_match;
+	public PessoaFisic getMatch() {
+		return match;
 	}
 
-	public void setCpf_match(PessoaFisic cpf_match) {
-		this.cpf_match = cpf_match;
+	public void setMatch(PessoaFisic match) {
+		this.match = match;
 	}
 
 	@Override
@@ -66,12 +68,12 @@ public class PessoaFisic {
 		return "PessoaFisic [agencia = " + agencia + ", conta = " + conta + "] Cliente " + cliente;
 	}
 
-	public void MesmoCpf(PessoaFisic cpf_match) throws CPFExceptions {
+	public void MesmoCpf(PessoaFisic match) throws CpfException {
 
-		if (cpf_match != null) {
-			throw new CPFExceptions("Esse CPF ja esta cadastrado, procure um gerente");
+		if (match != null) {
+			throw new CpfException("Esse CPF ja esta cadastrado, procure um gerente");
 		}
-		this.cpf_match = cpf_match;
+		this.match = match;
 
 	}
 
@@ -90,6 +92,19 @@ public class PessoaFisic {
 				return false;
 		}
 		return true;
+	}
+
+	public void CpfTamanho(String cpf) {
+
+		if (cpf.length() != 11)
+			throw new CpfLenghtException("O CPF deve conter 11 digitos");
+	}
+
+	public void ConfirmaConta(PessoaFisic match) {
+		if (match == null) {
+			throw new ConfirmaContaException("Esse CPF ja esta cadastrado, procure um gerente");
+		}
+		this.match = match;
 	}
 
 }

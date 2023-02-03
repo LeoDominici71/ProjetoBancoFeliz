@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 import br.com.entities.app.Cliente;
 import br.com.entities.app.PessoaFisic;
-import br.com.exception.app.CPFExceptions;
+import br.com.exception.app.ConfirmaContaException;
+import br.com.exception.app.CpfException;
+import br.com.exception.app.CpfLenghtException;
 import br.com.exception.app.StringException;
 
 public class Programa {
@@ -15,10 +17,15 @@ public class Programa {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
+
 		Cliente cliente = new Cliente();
+
 		PessoaFisic pessoaFisica = new PessoaFisic();
+
 		List<PessoaFisic> list = new ArrayList<PessoaFisic>();
+
 		boolean continuar = true;
+
 		char opcao = 's';
 
 		try (Scanner input = new Scanner(System.in)) {
@@ -44,6 +51,7 @@ public class Programa {
 						cidade = "Sao Paulo";
 						break;
 					}
+
 					System.out.println("Digite seu nome");
 					String nome = sc.next();
 					pessoaFisica.eString(nome);
@@ -53,9 +61,10 @@ public class Programa {
 					pessoaFisica.eString(sobrenome);
 
 					System.out.println("Digite seu cpf");
-					int cpf = sc.nextInt();
-					PessoaFisic cpf_match = list.stream().filter(x -> x.getCpf() == cpf).findFirst().orElse(null);
+					String cpf = sc.next();
+					PessoaFisic cpf_match = list.stream().filter(x -> x.getCpf().equals(cpf)).findFirst().orElse(null);
 					pessoaFisica.MesmoCpf(cpf_match);
+					pessoaFisica.CpfTamanho(cpf);
 
 					System.out.println("Digite o nome da rua");
 					String rua = sc.next();
@@ -66,8 +75,8 @@ public class Programa {
 					System.out.println("Digite o complemento se houver, se nao digite 0");
 					int complemento = sc.nextInt();
 
-					System.out.println("Digite o telefone");
-					int telefone = sc.nextInt();
+					System.out.println("Digite o telefone com o ddd");
+					String telefone = sc.next();
 
 					int conta = 10000 + i;
 
@@ -80,22 +89,29 @@ public class Programa {
 					System.out.println(cliente);
 
 					System.out.println("Agencia : " + agencia + " Conta : " + conta);
+
 					System.out.println(
 							"===========================================================================================================");
 					System.out.println("Gostaria de acessar sua conta?");
 					char acesso = sc.next().charAt(0);
 					if (acesso == 's') {
+
 						System.out.println("Digite o numero da conta");
 						int id_match = sc.nextInt();
 						pessoaFisic = list.stream().filter(x -> x.getConta() == id_match).findFirst().orElse(null);
+						pessoaFisic.ConfirmaConta(pessoaFisic);
+
 						System.out.println(pessoaFisic);
 					}
+
 					System.out.println("Gostaria de cadastrar outra conta? sim/nao");
 
 					opcao = sc.next().charAt(0);
 
 					if (opcao != 's') {
+
 						continuar = false;
+
 						System.out.println("Muito obrigado por usar nossos serviços");
 
 					}
@@ -103,14 +119,26 @@ public class Programa {
 				}
 			}
 		} catch (InputMismatchException err) {
+
 			System.out.println("Erro! O valor digitado nao e valido");
 
-		} catch (CPFExceptions e) {
+		} catch (CpfException e) {
+
 			System.out.println("Esse CPF ja esta cadastrado, procure um gerente");
-		}catch(StringException e) {
+
+		} catch (StringException e) {
+
 			System.out.println("Por favor digite somente letras");
-			
+
+		} catch (CpfLenghtException e) {
+
+			System.out.println("O CPF deve conter 11 digitos");
+
+		} catch (ConfirmaContaException e) {
+
+			System.out.println("Essa conta nao existe");
+
 		}
-		
+
 	}
 }

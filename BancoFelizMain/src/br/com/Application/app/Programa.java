@@ -64,7 +64,7 @@ public class Programa {
 					pessoaFisica.MesmoCpf(cpf_match);
 					pessoaFisica.CpfTamanho(cpf);
 
-					System.out.println("Digite o nome da rua");
+					System.out.println("Digite o nome da rua/ sem espacos");
 					String rua = sc.next();
 					
 

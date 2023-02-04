@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import br.com.entities.app.Cliente;
 import br.com.entities.app.PessoaFisic;
-import br.com.exception.app.ConfirmaContaException;
 import br.com.exception.app.CpfException;
 import br.com.exception.app.CpfLenghtException;
 import br.com.exception.app.StringException;
@@ -134,7 +133,7 @@ public class Programa {
 
 			System.out.println("O CPF deve conter 11 digitos");
 
-		} catch (ConfirmaContaException e) {
+		} catch (NullPointerException err) {
 
 			System.out.println("Essa conta nao existe");
 

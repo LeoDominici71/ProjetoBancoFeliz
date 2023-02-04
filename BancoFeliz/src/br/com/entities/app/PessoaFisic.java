@@ -3,7 +3,6 @@ package br.com.entities.app;
 import br.com.exception.app.ConfirmaContaException;
 import br.com.exception.app.CpfException;
 import br.com.exception.app.CpfLenghtException;
-import br.com.exception.app.StringException;
 
 public class PessoaFisic {
 
@@ -67,24 +66,8 @@ public class PessoaFisic {
 
 	}
 
-	public void eString(String texto) throws StringException {
 
-		if (isNumeric(texto)) {
-			throw new StringException("Por favor digite somente letras");
-
-		}
-
-	}
-
-	public static boolean isNumeric(String str) {
-		for (char c : str.toCharArray()) {
-			if (!Character.isDigit(c))
-				return false;
-		}
-		return true;
-	}
-
-	public void CpfTamanho(String cpf) {
+	public void CpfTamanho(String cpf) throws CpfLenghtException{
 
 		if (cpf.length() != 11)
 			throw new CpfLenghtException("O CPF deve conter 11 digitos");

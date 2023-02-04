@@ -1,7 +1,5 @@
 package br.com.entities.app;
 
-import java.util.Collection;
-
 import br.com.services.app.Pessoa;
 
 public class Cliente implements Pessoa {

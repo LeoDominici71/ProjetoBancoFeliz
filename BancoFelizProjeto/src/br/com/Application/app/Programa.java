@@ -9,7 +9,6 @@ import br.com.entities.app.Cliente;
 import br.com.entities.app.PessoaFisic;
 import br.com.exception.app.CpfException;
 import br.com.exception.app.CpfLenghtException;
-import br.com.exception.app.StringException;
 
 public class Programa {
 
@@ -53,11 +52,11 @@ public class Programa {
 
 					System.out.println("Digite seu nome");
 					String nome = sc.next();
-					pessoaFisica.eString(nome);
+					
 
 					System.out.println("Digite seu sobrenome");
 					String sobrenome = sc.next();
-					pessoaFisica.eString(sobrenome);
+					
 
 					System.out.println("Digite seu cpf");
 					String cpf = sc.next();
@@ -67,6 +66,7 @@ public class Programa {
 
 					System.out.println("Digite o nome da rua");
 					String rua = sc.next();
+					
 
 					System.out.println("Digite o numero da residencia");
 					int numero = sc.nextInt();
@@ -127,19 +127,15 @@ public class Programa {
 
 			System.out.println("Esse CPF ja esta cadastrado, procure um gerente");
 
-		} catch (StringException e) {
-
-			System.out.println("Por favor, digite somente letras");
-
 		} catch (CpfLenghtException e) {
 
 			System.out.println("O CPF deve conter 11 digitos");
 
 		} catch (NullPointerException err) {
-
+ 
 			System.out.println("Essa conta nao existe");
 
-		}
 
 	}
+}
 }

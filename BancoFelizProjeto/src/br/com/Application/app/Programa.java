@@ -93,6 +93,19 @@ public class Programa {
 
 					System.out.println(
 							"===========================================================================================================");
+					System.out.println("Seus dados estao corretos? sim/nao");
+
+					opcao = sc.next().charAt(0);
+
+					if (opcao != 's') {
+
+						continuar = false;
+
+						System.out.println("Tente novamente!");
+						
+					
+					}else {
+					
 					System.out.println("Gostaria de acessar sua conta? sim/nao");
 					char acesso = sc.next().charAt(0);
 					if (acesso == 's') {
@@ -116,7 +129,7 @@ public class Programa {
 						System.out.println("Muito obrigado por usar nossos serviços");
 
 					}
-
+					}
 				}
 			}
 		} catch (InputMismatchException err) {

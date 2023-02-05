@@ -50,7 +50,7 @@ public class Programa {
 						break;
 					}
 
-					System.out.println("Digite seu nome");
+					System.out.println("Digite seu primeiro nome");
 					String nome = sc.next();
 					
 
